@@ -20,7 +20,6 @@
 @interface KnobController : UIControl <UIGestureRecognizerDelegate, NSCoding> {
     @private
         float previousRotation;
-        float knobValue;
 }
 
 
