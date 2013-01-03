@@ -39,8 +39,8 @@
 
 - (void) setupButton
 {
+    // setup vars
     if (multiplicator==0) multiplicator = 1;
-    
     previousRotation = 0.5/multiplicator;
     
     // add gesture rec
