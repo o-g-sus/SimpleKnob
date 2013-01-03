@@ -21,7 +21,6 @@
 
 - (void)drawRect:(CGRect)rect
 {    
-    //NSLog(@"drawRect");
     // draw circle
     int dim = self.frame.size.width;
     
