@@ -60,7 +60,7 @@
     self.valueLabel.backgroundColor = [UIColor clearColor];
     [self addSubview:self.valueLabel];
     
-    // add headline label
+    // add description label
     self.describeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, self.frame.size.width, 20)];
     self.describeLabel.text = @"description";
     self.describeLabel.font = [UIFont systemFontOfSize:10];

@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "KnobView.h" 
+
 @interface ViewController ()
 
 @end
@@ -51,6 +53,16 @@
     knob1.describeLabel.hidden = YES;
     knob3.describeLabel.hidden = YES;
     knob2.valueLabel.hidden = YES;
+    knob1.knobView.buttonBGColor = [UIColor greenColor];
+    knob3.knobView.buttonBGColor = [UIColor greenColor]; // 0.0, 1.0, 0.0 RGB 
+    knob1.knobView.buttonBGHighlightColor = [UIColor colorWithRed:0 green:0.8 blue:0 alpha:1];
+    knob3.knobView.buttonBGHighlightColor = [UIColor colorWithRed:0 green:0.8 blue:0 alpha:1];
+    knob1.knobView.buttonLinesColor = [UIColor whiteColor];
+    knob3.knobView.buttonLinesColor = [UIColor whiteColor];
+    knobVolume.knobView.buttonBGColor = [UIColor redColor];
+    knobSteps.knobView.buttonBGColor  = [UIColor redColor]; // 1.0, 0.0, 0.0 RGB
+    knobVolume.knobView.buttonBGHighlightColor = [UIColor colorWithRed:0.8 green:0 blue:0 alpha:1];
+    knobSteps.knobView.buttonBGHighlightColor  = [UIColor colorWithRed:0.8 green:0 blue:0 alpha:1];
 }
 
 - (void) newValue:(float)newVal fromSender:(id)sender
