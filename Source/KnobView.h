@@ -7,7 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KnobView : UIControl
+@interface KnobView : UIButton
 
+@property (nonatomic, strong) UIColor * buttonBGColor;
+@property (nonatomic, strong) UIColor * buttonBGHighlightColor;
+@property (nonatomic, strong) UIColor * buttonLinesColor;
+
+- (void) setButtonHighlighted:(BOOL) highl;
 
 @end

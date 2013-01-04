@@ -40,18 +40,13 @@
 - (void) setupButton
 {
     // setup vars
-    if (multiplicator==0) multiplicator = 1;    
+    if (multiplicator==0) multiplicator = 1;
     previousRotation = 0.5/multiplicator;
     
-    // add gesture rec
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [pan setDelegate:self];
-    [self addGestureRecognizer:pan];
-    
     // add knob view
-    self.knobView = [[KnobView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [self addSubview:self.knobView];
+    self.knobView = [[KnobView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];    
     self.knobView.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.knobView];
     
     // add value label
     self.valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.knobView.frame.size.height, self.frame.size.width, 20)];
@@ -66,7 +61,14 @@
     self.describeLabel.font = [UIFont systemFontOfSize:10];
     self.describeLabel.textAlignment = NSTextAlignmentCenter;
     self.describeLabel.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.describeLabel];
+    [self addSubview:self.describeLabel];    
+    
+    // add gesture recognizer
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self addGestureRecognizer:pan];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.knobView addGestureRecognizer:tap];
     
 }
 
@@ -81,10 +83,18 @@
     
     NSNumber *nsValue = [NSNumber numberWithFloat:rotNumber];
     [self setKnobToValue:nsValue];
+    [self.knobView setButtonHighlighted:YES];
     
-    if ([uigr  state] == UIGestureRecognizerStateEnded) {        
+    if ([uigr state] == UIGestureRecognizerStateEnded) {        
         previousRotation = rotNumber;
+        [self.knobView setButtonHighlighted:NO];
     }
+}
+
+- (void) handleTap: (UITapGestureRecognizer *) uigr
+{
+    // TODO not working emmediately, only with tap off .. why?
+    [self.knobView setButtonHighlighted:YES];
 }
 
 - (void) setKnobToValue:(NSNumber*) value_
@@ -104,8 +114,8 @@
 - (void) setInitValue:(float) value_
 {
     previousRotation = value_/multiplicator;
-    // TODO make without delay !!
-    [self performSelector:@selector(setKnobToValue:) withObject:[NSNumber numberWithFloat:value_/multiplicator] afterDelay:0.01];
+    [self performSelector:@selector(setKnobToValue:)
+               withObject:[NSNumber numberWithFloat:value_/multiplicator]];
 }
 
 
